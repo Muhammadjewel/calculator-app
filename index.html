@@ -34,26 +34,36 @@
   <div class="calculator">
     <!-- HEADER -->
     <header class="calculator__header">
-      <a class="logo" href="index.html">calc</a>
+      <a class="calculator__logo logo" href="index.html">calc</a>
 
       <!-- THEME-SWITCHER -->
       <div class="theme-switcher">
         <span class="theme-switcher__text">Theme</span>
 
-        <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="dark" id="dark-theme-radio">
-        <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="light" id="light-theme-radio">
-        <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="vintage" id="vintage-theme-radio">
+        <div class="theme-switcher__control-wrapper">
+          <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="dark" id="dark-theme-radio">
+          <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="light" id="light-theme-radio">
+          <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="vintage" id="vintage-theme-radio">
 
-        <div class="theme-switcher__control">
-          <label class="theme-switcher__circle" for="dark-theme-radio">
-            <span class="visually-hidden">Dark theme</span>
-          </label>
-          <label class="theme-switcher__circle" for="light-theme-radio">
-            <span class="visually-hidden">Light theme</span>
-          </label>
-          <label class="theme-switcher__circle" for="vintage-theme-radio">
-            <span class="visually-hidden">Vintage theme</span>
-          </label>
+          <div class="theme-switcher__indicators">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+          </div>
+
+          <div class="theme-switcher__control">
+            <label class="theme-switcher__label" for="dark-theme-radio">
+              <span class="visually-hidden">Dark theme</span>
+            </label>
+            <label class="theme-switcher__label" for="light-theme-radio">
+              <span class="visually-hidden">Light theme</span>
+            </label>
+            <label class="theme-switcher__label" for="vintage-theme-radio">
+              <span class="visually-hidden">Vintage theme</span>
+            </label>
+
+            <span class="theme-switcher__circle"></span>
+          </div>
         </div>
       </div>
     </header>

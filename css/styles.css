@@ -1,6 +1,7 @@
 /* CUSTOM PROPS */
 :root {
 
+  --transition-duration: 0.2s;
 }
 
 :root[data-theme="light"] {
@@ -20,7 +21,7 @@
 body {
   display: flex;
   flex-direction: column;
-  padding: 0;
+  padding: 32px 24px;
   margin: 0;
   font-family: "League Spartan", "Arial", sans-serif;
   font-size: 2rem;
@@ -92,6 +93,150 @@ select:-webkit-autofill:focus {
   flex-grow: 1;
 }
 
+
+/* LOGO */
+.logo {
+  font-size: 2rem;
+  letter-spacing: -0.03331rem;
+  text-decoration: none;
+}
+
+
+/* THEME-SWITCHER */
+.theme-switcher {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  font-size: 0.75rem;
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+}
+
+.theme-switcher__text {
+}
+
+.theme-switcher__indicators {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+  letter-spacing: 0;
+}
+
+.theme-switcher__control {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 71px;
+  height: 26px;
+  padding: 5px;
+  border-radius: 13px;
+  overflow: hidden;
+  background-color: #ccc;
+}
+
+.theme-switcher__radio:focus ~ .theme-switcher__control {
+  outline: 2px dashed #000;
+  outline-offset: 3px;
+}
+
+.theme-switcher__label {
+  position: relative;
+  z-index: 2;
+  flex-grow: 1;
+  /* width: 20px; */
+}
+
+.theme-switcher__circle {
+  position: absolute;
+  z-index: 1;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #000;
+  transition: transform var(--transition-duration) ease;
+}
+
+.theme-switcher__radio#dark-theme-radio:checked ~ .theme-switcher__control .theme-switcher__circle {
+  transform: translateX(0);
+}
+
+.theme-switcher__radio#light-theme-radio:checked ~ .theme-switcher__control .theme-switcher__circle {
+  transform: translateX(23px);
+}
+
+.theme-switcher__radio#vintage-theme-radio:checked ~ .theme-switcher__control .theme-switcher__circle {
+  transform: translateX(45px);
+}
+
+
+/* CALCULATOR */
+.calculator {
+  width: 100%;
+  max-width: 33.75rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calculator__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.calculator__logo {
+  margin-bottom: 3px;
+}
+
+
+.calculator__main {
+}
+.calculator__input {
+  display: block;
+  width: 100%;
+}
+.calculator__keyboard {
+}
+.key {
+}
+.key--7 {
+}
+.key--8 {
+}
+.key--9 {
+}
+.key--del {
+}
+.key--4 {
+}
+.key--5 {
+}
+.key--6 {
+}
+.key--add {
+}
+.key--1 {
+}
+.key--2 {
+}
+.key--3 {
+}
+.key--subtract {
+}
+.key--decimal {
+}
+.key--0 {
+}
+.key--divide {
+}
+.key--multiply {
+}
+.key--reset {
+}
+.key--equal {
+}
+
+
 @media
 only screen and (-webkit-min-device-pixel-ratio: 2),
 only screen and (   min--moz-device-pixel-ratio: 2),
@@ -104,7 +249,12 @@ only screen and (                min-resolution: 2dppx) {
 
 @media only screen and (min-width: 36.75em) {
   body {
+    padding: 96px 24px;
     font-size: 2.5rem;
     letter-spacing: -0.04169rem;
+  }
+
+  .calculator__logo {
+    margin-bottom: 1px;
   }
 }
