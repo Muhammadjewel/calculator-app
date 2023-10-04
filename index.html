@@ -31,7 +31,59 @@
 </head>
 <body>
 
+  <div class="calculator">
+    <!-- HEADER -->
+    <header class="calculator__header">
+      <a class="logo" href="index.html">calc</a>
 
+      <!-- THEME-SWITCHER -->
+      <div class="theme-switcher">
+        <span class="theme-switcher__text">Theme</span>
+
+        <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="dark" id="dark-theme-radio">
+        <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="light" id="light-theme-radio">
+        <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="vintage" id="vintage-theme-radio">
+
+        <div class="theme-switcher__control">
+          <label class="theme-switcher__circle" for="dark-theme-radio">
+            <span class="visually-hidden">Dark theme</span>
+          </label>
+          <label class="theme-switcher__circle" for="light-theme-radio">
+            <span class="visually-hidden">Light theme</span>
+          </label>
+          <label class="theme-switcher__circle" for="vintage-theme-radio">
+            <span class="visually-hidden">Vintage theme</span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="calculator__main">
+      <input class="calculator__input" type="text" inputmode="number" placeholder="0">
+
+      <div class="calculator__keyboard">
+        <button class="key key--7" type="button">7</button>
+        <button class="key key--8" type="button">8</button>
+        <button class="key key--9" type="button">9</button>
+        <button class="key key--del" type="button">Del</button>
+        <button class="key key--4" type="button">4</button>
+        <button class="key key--5" type="button">5</button>
+        <button class="key key--6" type="button">6</button>
+        <button class="key key--add" type="button">+</button>
+        <button class="key key--1" type="button">1</button>
+        <button class="key key--2" type="button">2</button>
+        <button class="key key--3" type="button">3</button>
+        <button class="key key--subtract" type="button">-</button>
+        <button class="key key--decimal" type="button">.</button>
+        <button class="key key--0" type="button">0</button>
+        <button class="key key--divide" type="button">/</button>
+        <button class="key key--multiply" type="button">x</button>
+        <button class="key key--reset" type="button">Reset</button>
+        <button class="key key--equal" type="button">=</button>
+      </div>
+    </main>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
