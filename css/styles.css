@@ -37,6 +37,10 @@ img {
   height: auto;
 }
 
+*:focus {
+  outline: 2px dashed #000;
+  outline-offset: 3px;
+}
 
 /* AUTOFILL-STYLES */
 /*input:-webkit-autofill,
@@ -169,6 +173,91 @@ select:-webkit-autofill:focus {
 }
 
 
+/* KEY */
+.key {
+  display: block;
+  padding: 13px 10px 11px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #EAE3DC;
+  color: #434A59;
+  text-align: center;
+  box-shadow: 0px -4px 0px 0px #B3A497 inset;
+}
+
+.key--7 {
+  grid-area: seven;
+}
+
+.key--8 {
+  grid-area: eight;
+}
+
+.key--9 {
+  grid-area: nine;
+}
+
+.key--del {
+  grid-area: del;
+}
+
+.key--4 {
+  grid-area: four;
+}
+
+.key--5 {
+  grid-area: five;
+}
+
+.key--6 {
+  grid-area: six;
+}
+
+.key--add {
+  grid-area: add;
+}
+
+.key--1 {
+  grid-area: one;
+}
+
+.key--2 {
+  grid-area: two;
+}
+
+.key--3 {
+  grid-area: three;
+}
+
+.key--subtract {
+  grid-area: subtract;
+}
+
+.key--decimal {
+  grid-area: decimal;
+}
+
+.key--0 {
+  grid-area: zero;
+}
+
+.key--divide {
+  grid-area: divide;
+}
+
+.key--multiply {
+  grid-area: multiply;
+}
+
+.key--reset {
+  grid-area: reset;
+}
+
+.key--equal {
+  grid-area: equal;
+}
+
+
 /* CALCULATOR */
 .calculator {
   width: 100%;
@@ -190,50 +279,36 @@ select:-webkit-autofill:focus {
 
 
 .calculator__main {
+  display: grid;
+  gap: 24px;
 }
+
 .calculator__input {
   display: block;
   width: 100%;
+  padding: 29px 24px 22px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 2.5rem;
+  letter-spacing: -0.04169rem;
+  text-align: right;
 }
+
 .calculator__keyboard {
-}
-.key {
-}
-.key--7 {
-}
-.key--8 {
-}
-.key--9 {
-}
-.key--del {
-}
-.key--4 {
-}
-.key--5 {
-}
-.key--6 {
-}
-.key--add {
-}
-.key--1 {
-}
-.key--2 {
-}
-.key--3 {
-}
-.key--subtract {
-}
-.key--decimal {
-}
-.key--0 {
-}
-.key--divide {
-}
-.key--multiply {
-}
-.key--reset {
-}
-.key--equal {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 64px);
+  grid-template-areas:
+    "seven eight nine del"
+    "four five six add"
+    "one two three subtract"
+    "decimal zero divide multiply"
+    "reset reset equal equal";
+  ;
+  gap: 13px;
+  padding: 24px;
+  border-radius: 10px;
+  background-color: #242D44;
 }
 
 
@@ -256,5 +331,16 @@ only screen and (                min-resolution: 2dppx) {
 
   .calculator__logo {
     margin-bottom: 1px;
+  }
+
+  .calculator__input {
+    padding: 40px 32px 36px;
+    font-size: 3.5rem;
+    letter-spacing: -0.05831rem;
+  }
+
+  .calculator__keyboard {
+    gap: 24px;
+    padding: 32px 30px;
   }
 }
