@@ -23,10 +23,13 @@ body {
   padding: 0;
   margin: 0;
   font-family: "League Spartan", "Arial", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.03331rem;
+
   background-color: #fff;
-  color: #222;
+  color: #434A59;
 }
 
 img {
@@ -97,4 +100,11 @@ only screen and (        min-device-pixel-ratio: 2),
 only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) {
 
+}
+
+@media only screen and (min-width: 36.75em) {
+  body {
+    font-size: 2.5rem;
+    letter-spacing: -0.04169rem;
+  }
 }
