@@ -1,6 +1,6 @@
 /* CUSTOM PROPS */
 :root {
-  --transition-duration: 0.2s;
+  --transition-duration: 0.3s;
 }
 
 :root[data-theme="light"] {
@@ -117,9 +117,11 @@ body {
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.03331rem;
-
   background-color: var(--color-bg-body);
   color: var(--color-text-body);
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease;
+  transition-property: background-color, color;
 }
 
 img {
@@ -263,14 +265,17 @@ select:-webkit-autofill:focus {
   opacity: 0.6;
 }
 
+[data-theme="dark"] .theme-switcher__circle,
 .theme-switcher__radio#dark-theme-radio:checked ~ .theme-switcher__control .theme-switcher__circle {
   transform: translateX(0);
 }
 
+[data-theme="light"] .theme-switcher__circle,
 .theme-switcher__radio#light-theme-radio:checked ~ .theme-switcher__control .theme-switcher__circle {
   transform: translateX(23px);
 }
 
+[data-theme="vintage"] .theme-switcher__circle,
 .theme-switcher__radio#vintage-theme-radio:checked ~ .theme-switcher__control .theme-switcher__circle {
   transform: translateX(45px);
 }
@@ -287,6 +292,9 @@ select:-webkit-autofill:focus {
   text-align: center;
   box-shadow: 0px -4px 0px 0px var(--color-shadow-key) inset;
   cursor: pointer;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease;
+  transition-property: background-color, color, box-shadow;
 }
 
 .key:hover {
@@ -443,6 +451,9 @@ select:-webkit-autofill:focus {
   background-color: var(--color-bg-input);
   color: var(--color-text-input);
   text-align: right;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease;
+  transition-property: background-color, color;
 }
 
 .calculator__keyboard {
@@ -460,6 +471,9 @@ select:-webkit-autofill:focus {
   padding: 24px;
   border-radius: 10px;
   background-color: var(--color-bg-controls);
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease;
+  transition-property: background-color;
 }
 
 
