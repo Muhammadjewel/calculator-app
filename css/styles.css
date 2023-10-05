@@ -1,19 +1,108 @@
 /* CUSTOM PROPS */
 :root {
-
   --transition-duration: 0.2s;
 }
 
 :root[data-theme="light"] {
+  --color-bg-body: #e6e6e6;
+  --color-text-body: #36362c;
 
+  --color-outline: #c85402;
+
+  --color-text-header: #36362c;
+
+  --color-bg-controls: #d2cdcd;
+
+  --color-bg-circle: #c85402;
+  --color-bg-circle-hover: #ff8a38;
+
+  --color-bg-input: #eee;
+  --color-text-input: #36362c;
+
+  --color-bg-key: #e5e4e1;
+  --color-bg-key-hover: #fff;
+  --color-bg-key-active: #cfcecb;
+  --color-shadow-key: #a79e91;
+
+  --color-bg-key-command: #378187;
+  --color-text-key-command: #fff;
+  --color-bg-key-command-hover: #62b5bc;
+  --color-bg-key-command-active: #33757b;
+  --color-shadow-key-command: #1b6066;
+
+  --color-bg-key-equal: #c85402;
+  --color-text-key-equal: #fff;
+  --color-bg-key-equal-hover: #ff8a38;
+  --color-bg-key-equal-active: #b14a00;
+  --color-shadow-key-equal: #873901;
 }
 
 :root[data-theme="dark"] {
+  --color-bg-body: #3a4663;
+  --color-text-body: #434a59;
 
+  --color-outline: #fff;
+
+  --color-text-header: #fff;
+
+  --color-bg-controls: #242d44;
+
+  --color-bg-circle: #d03f2f;
+  --color-bg-circle-hover: #f96b5b;
+
+  --color-bg-input: #181f33;
+  --color-text-input: #fff;
+
+  --color-bg-key: #eae3dc;
+  --color-bg-key-hover: #fffffe;
+  --color-bg-key-active: #e6d5c4;
+  --color-shadow-key: #b3a497;
+
+  --color-bg-key-command: #647198;
+  --color-text-key-command: #fff;
+  --color-bg-key-command-hover: #a2b2e1;
+  --color-bg-key-command-active: #546084;
+  --color-shadow-key-command: #414e73;
+
+  --color-bg-key-equal: #d03f2f;
+  --color-text-key-equal: #fff;
+  --color-bg-key-equal-hover: #f96b5b;
+  --color-bg-key-equal-active: #ac382b;
+  --color-shadow-key-equal: #93261a;
 }
 
 :root[data-theme="vintage"] {
+  --color-bg-body: #17062A;
+  --color-text-body: #FFE53D;
 
+  --color-outline: #FFE53D;
+
+  --color-text-header: #FFE53D;
+
+  --color-bg-controls: #1E0936;
+
+  --color-bg-circle: #00DED0;
+  --color-bg-circle-hover: #93FFF8;
+
+  --color-bg-input: #1E0936;
+  --color-text-input: #FFE53D;
+
+  --color-bg-key: #331C4D;
+  --color-bg-key-hover: #6C34AC;
+  --color-bg-key-active: #261539;
+  --color-shadow-key: #881C9E;
+
+  --color-bg-key-command: #56077C;
+  --color-text-key-command: #fff;
+  --color-bg-key-command-hover: #8631AF;
+  --color-bg-key-command-active: #3f0759;
+  --color-shadow-key-command: #BE15F4;
+
+  --color-bg-key-equal: #00DED0;
+  --color-text-key-equal: #1A2327;
+  --color-bg-key-equal-hover: #93FFF8;
+  --color-bg-key-equal-active: #01bcb0;
+  --color-shadow-key-equal: #6CF9F1;
 }
 
 
@@ -29,8 +118,8 @@ body {
   line-height: normal;
   letter-spacing: -0.03331rem;
 
-  background-color: #fff;
-  color: #434A59;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-body);
 }
 
 img {
@@ -38,7 +127,7 @@ img {
 }
 
 *:focus {
-  outline: 2px dashed #000;
+  outline: 2px dashed var(--color-outline);
   outline-offset: 3px;
 }
 
@@ -102,6 +191,7 @@ select:-webkit-autofill:focus {
 .logo {
   font-size: 2rem;
   letter-spacing: -0.03331rem;
+  color: var(--color-text-header);
   text-decoration: none;
 }
 
@@ -113,6 +203,7 @@ select:-webkit-autofill:focus {
   gap: 24px;
   font-size: 0.75rem;
   letter-spacing: 0.0625rem;
+  color: var(--color-text-header);
   text-transform: uppercase;
 }
 
@@ -136,11 +227,12 @@ select:-webkit-autofill:focus {
   padding: 5px;
   border-radius: 13px;
   overflow: hidden;
-  background-color: #ccc;
+  background-color: var(--color-bg-controls);
+  cursor: pointer;
 }
 
 .theme-switcher__radio:focus ~ .theme-switcher__control {
-  outline: 2px dashed #000;
+  outline: 2px dashed var(--color-outline);
   outline-offset: 3px;
 }
 
@@ -148,7 +240,7 @@ select:-webkit-autofill:focus {
   position: relative;
   z-index: 2;
   flex-grow: 1;
-  /* width: 20px; */
+  cursor: pointer;
 }
 
 .theme-switcher__circle {
@@ -157,8 +249,18 @@ select:-webkit-autofill:focus {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #000;
-  transition: transform var(--transition-duration) ease;
+  background-color: var(--color-bg-circle);
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease;
+  transition-property: transform, background-color, opacity;
+}
+
+.theme-switcher__label:hover ~ .theme-switcher__circle {
+  background-color: var(--color-bg-circle-hover);
+}
+
+.theme-switcher__circle:active {
+  opacity: 0.6;
 }
 
 .theme-switcher__radio#dark-theme-radio:checked ~ .theme-switcher__control .theme-switcher__circle {
@@ -180,17 +282,56 @@ select:-webkit-autofill:focus {
   padding: 13px 10px 11px;
   border: 0;
   border-radius: 5px;
-  background-color: #EAE3DC;
-  color: #434A59;
+  background-color: var(--color-bg-key);
+  color: var(--color-text-body);
   text-align: center;
-  box-shadow: 0px -4px 0px 0px #B3A497 inset;
+  box-shadow: 0px -4px 0px 0px var(--color-shadow-key) inset;
+  cursor: pointer;
+}
+
+.key:hover {
+  background-color: var(--color-bg-key-hover);
+}
+
+.key:active {
+  background-color: var(--color-bg-key-active);
+  box-shadow: 0px -3px 0px 0px var(--color-shadow-key) inset;
+  transform: translateY(1px);
 }
 
 .key--command {
   font-size: 1.25rem;
   letter-spacing: -0.02081rem;
+  background-color: var(--color-bg-key-command);
+  color: var(--color-text-key-command);
   text-transform: uppercase;
+  box-shadow: 0px -4px 0px 0px var(--color-shadow-key-command) inset;
 }
+
+.key--command:hover {
+  background-color: var(--color-bg-key-command-hover);
+}
+
+.key--command:active {
+  background-color: var(--color-bg-key-command-active);
+  box-shadow: 0px -3px 0px 0px var(--color-shadow-key-command) inset;
+}
+
+.key--equal {
+  background-color: var(--color-bg-key-equal);
+  color: var(--color-text-key-equal);
+  box-shadow: 0px -4px 0px 0px var(--color-shadow-key-equal) inset;
+}
+
+.key--equal:hover {
+  background-color: var(--color-bg-key-equal-hover);
+}
+
+.key--equal:active {
+  background-color: var(--color-bg-key-equal-active);
+  box-shadow: 0px -3px 0px 0px var(--color-shadow-key-equal) inset;
+}
+
 
 .key--7 {
   grid-area: seven;
@@ -299,6 +440,8 @@ select:-webkit-autofill:focus {
   border-radius: 10px;
   font-size: 2.5rem;
   letter-spacing: -0.04169rem;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-input);
   text-align: right;
 }
 
@@ -316,7 +459,7 @@ select:-webkit-autofill:focus {
   gap: 13px;
   padding: 24px;
   border-radius: 10px;
-  background-color: #242D44;
+  background-color: var(--color-bg-controls);
 }
 
 
