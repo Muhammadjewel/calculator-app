@@ -7,7 +7,7 @@
   <title>Calculator App</title>
 
   <!-- Theme toggling adaptation to user settings -->
-  <!-- <script>
+  <script>
     let localSTheme = localStorage.getItem('theme');
     let themeToSet = localSTheme;
 
@@ -16,7 +16,7 @@
     }
 
     document.documentElement.setAttribute('data-theme', themeToSet);
-  </script> -->
+  </script>
 
 
   <!-- Fonts -->
@@ -41,7 +41,7 @@
         <span class="theme-switcher__text">Theme</span>
 
         <div class="theme-switcher__control-wrapper">
-          <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="dark" id="dark-theme-radio">
+          <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="dark" id="dark-theme-radio" checked>
           <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="light" id="light-theme-radio">
           <input class="theme-switcher__radio visually-hidden" type="radio" name="theme" value="vintage" id="vintage-theme-radio">
 
