@@ -213,6 +213,10 @@ select:-webkit-autofill:focus {
   margin-bottom: 5px;
 }
 
+.theme-switcher__indicators-wrapper {
+  text-align: center;
+}
+
 .theme-switcher__indicators {
   display: flex;
   justify-content: space-around;
