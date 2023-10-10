@@ -3,18 +3,10 @@ function init () {
 
   // DOM handlers
   function switchTheme () {
-    const elRoot = document.documentElement
+    const elRoot = document.documentElement;
     let dataTheme = elThemeSwitcherControlWrapper.querySelector('input:checked').value;
 
-    let newTheme = '';
-
-    if (dataTheme === 'light') {
-      newTheme = 'light';
-    } else if (dataTheme === 'dark') {
-      newTheme = 'dark';
-    } else if (dataTheme === 'vintage') {
-      newTheme = 'vintage';
-    }
+    let newTheme = dataTheme;
 
     elRoot.setAttribute('data-theme', newTheme);
 
