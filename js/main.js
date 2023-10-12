@@ -1,26 +1,63 @@
+const CALCULATOR = {
+  themes: {
+    '1': 'dark',
+    '2': 'light',
+    '3': 'vintage'
+  }
+}
+
+
 function init () {
+  // **THEME SWITCHER
+  const elRoot = document.documentElement;
   const elThemeSwitcherControlWrapper = document.querySelector('.theme-switcher__control-wrapper');
 
-  // DOM handlers
+
   function switchTheme () {
-    const elRoot = document.documentElement;
-    let dataTheme = elThemeSwitcherControlWrapper.querySelector('input:checked').value;
+    const elCheckedThemeInput = elThemeSwitcherControlWrapper.querySelector('input:checked') || elThemeSwitcherControlWrapper.querySelector('[checked]');
+    let dataTheme = elCheckedThemeInput.value;
 
-    let newTheme = dataTheme;
+    elRoot.setAttribute('data-theme', dataTheme);
+    localStorage.setItem('theme', dataTheme);
+  }
 
-    elRoot.setAttribute('data-theme', newTheme);
+  function resetThemeInputs () {
+    const elsThemeInput = elThemeSwitcherControlWrapper.querySelectorAll('.theme-switcher__radio');
 
-    localStorage.setItem('theme', newTheme);
+    elsThemeInput.forEach(function (elThemeInput) {
+      elThemeInput.removeAttribute('checked');
+    });
+  }
+
+  function updateThemeInput (theme) {
+    const elCurrentTheme = theme || elRoot.dataset.theme;
+    document.querySelector(`.theme-switcher__radio[value='${elCurrentTheme}']`).setAttribute('checked', true);
+  }
+
+  function handleThemeHotkeyKeyUp (themeIndex) {
+    resetThemeInputs();
+    updateThemeInput(CALCULATOR.themes[themeIndex]);
+    switchTheme();
   }
 
 
-  // Event listeners
   if (elThemeSwitcherControlWrapper) {
     elThemeSwitcherControlWrapper.addEventListener('change', switchTheme);
   }
 
-  const elCurrentTheme = document.documentElement.dataset.theme;
-  document.querySelector(`.theme-switcher__radio[value='${elCurrentTheme}']`).setAttribute('checked', true);
+
+  // **FUNCTIONS TO RUN IN PAGE LOAD
+  updateThemeInput();
+
+
+  // **GLOBAL EVENT LISTENERS
+  document.addEventListener('keyup', function (evt) {
+    const isThemeHotkey = evt.altKey && (Object.keys(CALCULATOR.themes).includes(evt.key));
+
+    if (isThemeHotkey) {
+      handleThemeHotkeyKeyUp(evt.key);
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', init);
