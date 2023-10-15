@@ -65,6 +65,7 @@ function init () {
   // HANDLING NUMBER KEYS
   const elCalculatorInput = document.querySelector('.calculator__input');
   const elCalculatorKeyboard = document.querySelector('.calculator__keyboard');
+  const elKeyAudio = document.querySelector('#key-audio');
 
   function formatNumber (numberString) {
     return parseFloat(numberString, 10).toLocaleString();
@@ -81,20 +82,23 @@ function init () {
     if (isKeyDecimalAndCurrentValueEmpty) {
       CALCULATOR.currentValue += '0.';
       elCalculatorInput.value = CALCULATOR.currentValue;
+      playAudio(elKeyAudio);
       return;
     }
 
     if (isKeyDecimalAndHasCurrentValueDecimal) {
+      playAudio(elKeyAudio);
       return;
     }
 
     if (hasThreeDecimals) {
+      playAudio(elKeyAudio);
       return;
     }
 
     CALCULATOR.currentValue += key.dataset.key;
-
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
+    playAudio(elKeyAudio);
   }
 
   function handleCalculatorKeyboardClick (evt) {
