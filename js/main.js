@@ -3,6 +3,7 @@ const CALCULATOR = {
   firstNumber: null,
   secondNumber: null,
   operator: null,
+  result: null,
   isSoundOn: true,
   themes: {
     '1': 'dark',
@@ -100,6 +101,10 @@ function init () {
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
   }
 
+  function handleOperatorKeyClick (elKey) {
+    console.log(elKey.textContent);
+  }
+
   function deleteCharacter () {
     // TODO: fix number display when number has decimals and it has 0 in it
     const isCurrentValueEmpty = CALCULATOR.currentValue === '';
@@ -136,6 +141,10 @@ function init () {
 
     if (elKey.classList.contains('key--number')) {
       handleNumberKeyClick(elKey);
+    }
+
+    if (elKey.classList.contains('key--operator')) {
+      handleOperatorKeyClick(elKey);
     }
 
     if (elKey.classList.contains('key--del')) {
