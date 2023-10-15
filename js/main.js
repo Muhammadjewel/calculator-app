@@ -1,5 +1,8 @@
 const CALCULATOR = {
   currentValue: '',
+  firstNumber: null,
+  secondNumber: null,
+  operator: null,
   isSoundOn: true,
   themes: {
     '1': 'dark',
@@ -97,6 +100,14 @@ function init () {
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
   }
 
+  function reset () {
+    CALCULATOR.currentValue = '';
+    CALCULATOR.firstNumber = null;
+    CALCULATOR.secondNumber = null;
+    CALCULATOR.operator = null;
+    elCalculatorInput.value = '';
+  }
+
   function handleCalculatorKeyboardClick (evt) {
     const key = evt.target;
 
@@ -106,6 +117,10 @@ function init () {
 
     if (key.classList.contains('key--number')) {
       handleNumberKeyClick(key);
+    }
+
+    if (key.classList.contains('key--reset')) {
+      reset();
     }
   }
 
