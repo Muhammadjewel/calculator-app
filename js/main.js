@@ -111,7 +111,6 @@ function init () {
 
   // Keyboard ichidagi raqam tugmalari bosilganda
   if (elCalculatorKeyboard) {
-    // PLAYING AUDIO FOR ALL KEY CLICKS MAY BE HERE
     elCalculatorKeyboard.addEventListener('click', handleCalculatorKeyboardClick);
   }
 
