@@ -74,4 +74,23 @@ function init () {
 document.addEventListener('DOMContentLoaded', init);
 
 
-// TODO: Fix theme changing after hotkey/input change (and vice versa) cases
+
+
+
+/* TODO: Bug: Hotkeys can't change theme after theme is changed via keyboard radio manipulation
+
+Severity: low
+Priority: low
+Steps to reproduce:
+1. Change theme to 3 themes using arrow keys on input radio focus
+2. Change theme using hotkeys
+
+Expected result:
+Theme is changed.
+
+Actual result:
+Theme cannot be changed. No errors shown on console.
+
+Add'l:
+The reason can be because of input radio. Using buttons may help.
+*/
