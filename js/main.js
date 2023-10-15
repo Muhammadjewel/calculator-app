@@ -74,8 +74,8 @@ function init () {
     return parseFloat(numberString, 10).toLocaleString();
   }
 
-  function handleNumberKeyClick (key) {
-    const isKeyDecimal = key.dataset.key === '.';
+  function handleNumberKeyClick (elKey) {
+    const isKeyDecimal = elKey.dataset.key === '.';
     const isCurrentValueEmpty = CALCULATOR.currentValue === '';
     const hasCurrentValueDecimal = CALCULATOR.currentValue.includes('.');
     const isKeyDecimalAndCurrentValueEmpty = isKeyDecimal && isCurrentValueEmpty;
@@ -96,7 +96,7 @@ function init () {
       return;
     }
 
-    CALCULATOR.currentValue += key.dataset.key;
+    CALCULATOR.currentValue += elKey.dataset.key;
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
   }
 
@@ -109,17 +109,17 @@ function init () {
   }
 
   function handleCalculatorKeyboardClick (evt) {
-    const key = evt.target;
+    const elKey = evt.target;
 
-    if (key.classList.contains('key') && CALCULATOR.isSoundOn) {
+    if (elKey.classList.contains('key') && CALCULATOR.isSoundOn) {
       playAudio(elKeyAudio);
     }
 
-    if (key.classList.contains('key--number')) {
-      handleNumberKeyClick(key);
+    if (elKey.classList.contains('key--number')) {
+      handleNumberKeyClick(elKey);
     }
 
-    if (key.classList.contains('key--reset')) {
+    if (elKey.classList.contains('key--reset')) {
       reset();
     }
   }
