@@ -1,4 +1,5 @@
 const CALCULATOR = {
+  currentValue: '',
   isSoundOn: true,
   themes: {
     '1': 'dark',
@@ -61,8 +62,58 @@ function init () {
   updateThemeInput();
 
 
+  // HANDLING NUMBER KEYS
+  const elCalculatorInput = document.querySelector('.calculator__input');
+  const elCalculatorKeyboard = document.querySelector('.calculator__keyboard');
+
+  function formatNumber (numberString) {
+    return parseFloat(numberString, 10).toLocaleString();
+  }
+
+  function handleNumberKeyClick (key) {
+    const isKeyDecimal = key.dataset.key === '.';
+    const isCurrentValueEmpty = CALCULATOR.currentValue === '';
+    const hasCurrentValueDecimal = CALCULATOR.currentValue.includes('.');
+    const isKeyDecimalAndCurrentValueEmpty = isKeyDecimal && isCurrentValueEmpty;
+    const isKeyDecimalAndHasCurrentValueDecimal = isKeyDecimal && hasCurrentValueDecimal;
+    const hasThreeDecimals = hasCurrentValueDecimal && CALCULATOR.currentValue.split('.')[1].length === 3;
+
+    if (isKeyDecimalAndCurrentValueEmpty) {
+      CALCULATOR.currentValue += '0.';
+      elCalculatorInput.value = CALCULATOR.currentValue;
+      return;
+    }
+
+    if (isKeyDecimalAndHasCurrentValueDecimal) {
+      return;
+    }
+
+    if (hasThreeDecimals) {
+      return;
+    }
+
+    CALCULATOR.currentValue += key.dataset.key;
+
+    elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
+  }
+
+  function handleCalculatorKeyboardClick (evt) {
+    const key = evt.target;
+
+    if (key.classList.contains('key--number')) {
+      handleNumberKeyClick(key);
+    }
+  }
+
+  // Keyboard ichidagi raqam tugmalari bosilganda
+  if (elCalculatorKeyboard) {
+    elCalculatorKeyboard.addEventListener('click', handleCalculatorKeyboardClick);
+  }
+
+
   // **GLOBAL EVENT LISTENERS
   document.addEventListener('keyup', function (evt) {
+    // THEME CHANGING VIA HOTKEYS
     const isThemeHotkey = evt.altKey && (Object.keys(CALCULATOR.themes).includes(evt.key));
 
     if (isThemeHotkey) {
