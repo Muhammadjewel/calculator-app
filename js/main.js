@@ -82,27 +82,27 @@ function init () {
     if (isKeyDecimalAndCurrentValueEmpty) {
       CALCULATOR.currentValue += '0.';
       elCalculatorInput.value = CALCULATOR.currentValue;
-      playAudio(elKeyAudio);
       return;
     }
 
     if (isKeyDecimalAndHasCurrentValueDecimal) {
-      playAudio(elKeyAudio);
       return;
     }
 
     if (hasThreeDecimals) {
-      playAudio(elKeyAudio);
       return;
     }
 
     CALCULATOR.currentValue += key.dataset.key;
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
-    playAudio(elKeyAudio);
   }
 
   function handleCalculatorKeyboardClick (evt) {
     const key = evt.target;
+
+    if (key.classList.contains('key') && CALCULATOR.isSoundOn) {
+      playAudio(elKeyAudio);
+    }
 
     if (key.classList.contains('key--number')) {
       handleNumberKeyClick(key);
@@ -111,6 +111,7 @@ function init () {
 
   // Keyboard ichidagi raqam tugmalari bosilganda
   if (elCalculatorKeyboard) {
+    // PLAYING AUDIO FOR ALL KEY CLICKS MAY BE HERE
     elCalculatorKeyboard.addEventListener('click', handleCalculatorKeyboardClick);
   }
 
