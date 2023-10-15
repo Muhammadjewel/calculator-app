@@ -100,6 +100,25 @@ function init () {
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
   }
 
+  function deleteCharacter () {
+    // TODO: fix number display when number has decimals and it has 0 in it
+    const isCurrentValueEmpty = CALCULATOR.currentValue === '';
+    const hasCurrentValueOneCharacter = CALCULATOR.currentValue.length === 1;
+
+    if (isCurrentValueEmpty) {
+      return;
+    }
+
+    if (hasCurrentValueOneCharacter) {
+      CALCULATOR.currentValue = '';
+      elCalculatorInput.value = '';
+      return;
+    }
+
+    CALCULATOR.currentValue = CALCULATOR.currentValue.slice(0, -1);
+    elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
+  }
+
   function reset () {
     CALCULATOR.currentValue = '';
     CALCULATOR.firstNumber = null;
@@ -117,6 +136,10 @@ function init () {
 
     if (elKey.classList.contains('key--number')) {
       handleNumberKeyClick(elKey);
+    }
+
+    if (elKey.classList.contains('key--del')) {
+      deleteCharacter();
     }
 
     if (elKey.classList.contains('key--reset')) {
