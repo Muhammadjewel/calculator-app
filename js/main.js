@@ -72,6 +72,7 @@ function init () {
   const elKeyAudio = document.querySelector('#key-audio');
 
   function formatNumber (numberString) {
+    // TODO number is X. => show in a plain format
     return parseFloat(numberString, 10).toLocaleString();
   }
 
@@ -102,6 +103,20 @@ function init () {
   }
 
   function handleOperatorKeyClick (elKey) {
+    // no current value => ignore / return
+
+    // value
+      // set firstNumber and operator
+      // reset currentValue
+
+    // operator click AND firstNumber AND operator exists AND input is valid
+      // set secondNumber
+      // make calculations
+      // set firstNumber and currentValue to result
+      // update operator
+      // reset second number
+
+
     console.log(elKey.textContent);
   }
 
@@ -176,6 +191,11 @@ function init () {
 document.addEventListener('DOMContentLoaded', init);
 
 
+
+/* TODO
+Handle keyboard input via input.
+Remove anything other than number.
+*/
 
 
 
