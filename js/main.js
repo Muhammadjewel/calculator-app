@@ -4,6 +4,7 @@ const CALCULATOR = {
   secondNumber: null,
   operator: null,
   result: null,
+  isReadyForCalc: false,
   isSoundOn: true,
   themes: {
     '1': 'dark',
@@ -76,6 +77,22 @@ function init () {
     return parseFloat(numberString, 10).toLocaleString();
   }
 
+  function calculate () {
+    const { firstNumber, secondNumber, operator } = CALCULATOR;
+
+    if (operator === '+') {
+      CALCULATOR.result = firstNumber + secondNumber;
+    } else if (operator === '-') {
+      CALCULATOR.result = firstNumber - secondNumber;
+    } else if (operator === 'x') {
+      CALCULATOR.result = firstNumber * secondNumber;
+    } else if (operator === '/') {
+      CALCULATOR.result = firstNumber / secondNumber;
+    }
+
+    console.log(`${firstNumber} ${operator} ${secondNumber} = ${CALCULATOR.result}`);
+  }
+
   function handleNumberKeyClick (elKey) {
     const isKeyDecimal = elKey.dataset.key === '.';
     const isCurrentValueEmpty = CALCULATOR.currentValue === '';
@@ -103,11 +120,36 @@ function init () {
   }
 
   function handleOperatorKeyClick (elKey) {
-    // no current value => ignore / return
+    const isInputEmpty = !elCalculatorInput.value;
 
-    // value
-      // set firstNumber and operator
-      // reset currentValue
+    // no current value => ignore / return
+    if (isInputEmpty) {
+      console.log('empty');
+      return;
+    }
+
+
+    if (CALCULATOR.isReadyForCalc) {
+      CALCULATOR.secondNumber = parseFloat(CALCULATOR.currentValue, 10);
+
+      calculate();
+
+      const { result } = CALCULATOR;
+
+      CALCULATOR.firstNumber = result;
+      CALCULATOR.secondNumber = null;
+      CALCULATOR.currentValue = result;
+      elCalculatorInput.value = formatNumber(result);
+    }
+
+
+    if (CALCULATOR.firstNumber) {
+      CALCULATOR.operator = elKey.textContent;
+      CALCULATOR.currentValue = '';
+      console.log(`${CALCULATOR.firstNumber} ${CALCULATOR.operator}`);
+      return;
+    }
+
 
     // operator click AND firstNumber AND operator exists AND input is valid
       // set secondNumber
@@ -117,7 +159,15 @@ function init () {
       // reset second number
 
 
-    console.log(elKey.textContent);
+    // value
+      // set firstNumber and operator
+      // reset currentValue
+    CALCULATOR.firstNumber = parseFloat(CALCULATOR.currentValue, 10);
+    CALCULATOR.operator = elKey.textContent;
+    CALCULATOR.isReadyForCalc = true;
+    CALCULATOR.currentValue = '';
+
+    console.log(CALCULATOR.firstNumber, CALCULATOR.operator);
   }
 
   function deleteCharacter () {
