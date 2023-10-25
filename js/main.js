@@ -10,6 +10,13 @@ const CALCULATOR = {
     '1': 'dark',
     '2': 'light',
     '3': 'vintage'
+  },
+  numberKeyCodes: ['Numpad0', 'NumpadDecimal', 'Numpad1', 'Numpad2', 'Numpad3', 'Numpad4', 'Numpad5', 'Numpad6', 'Numpad7', 'Numpad8', 'Numpad9', 'Digit0', 'Period', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9'],
+  keyCodeReplaceMap: {
+    'Period': '.',
+    'Decimal': '.',
+    'Number': '',
+    'Digit': ''
   }
 }
 
@@ -85,6 +92,13 @@ function init () {
   function formatNumber (numberString) {
     // TODO number is X. => show in a plain format
     return parseFloat(numberString, 10).toLocaleString();
+  }
+
+  function replaceMultiple (string, map) {
+    for (let x in map) {
+      string = string.replace(new RegExp(x, 'g'), map[x]);
+    }
+    return string;
   }
 
   function calculate () {
@@ -233,6 +247,7 @@ function init () {
     // THEME CHANGING VIA HOTKEYS
     const isThemeHotkey = evt.altKey && (Object.keys(CALCULATOR.themes).includes(evt.key));
     const isEscKey = evt.code === 'Escape';
+    const isNumberKey = CALCULATOR.numberKeyCodes.includes(evt.code);
 
     if (isThemeHotkey) {
       handleThemeHotkeyKeyUp(evt.key);
@@ -240,6 +255,11 @@ function init () {
 
     if (isEscKey) {
       emulateKeyPress(elCalculatorKeyboard.querySelector('.key--reset'));
+    }
+
+    if (isNumberKey) {
+      let key = replaceMultiple(evt.code, CALCULATOR.keyCodeReplaceMap);
+      console.log(evt.code, key);
     }
   });
 }
