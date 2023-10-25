@@ -232,9 +232,14 @@ function init () {
   document.addEventListener('keyup', function (evt) {
     // THEME CHANGING VIA HOTKEYS
     const isThemeHotkey = evt.altKey && (Object.keys(CALCULATOR.themes).includes(evt.key));
+    const isEscKey = evt.code === 'Escape';
 
     if (isThemeHotkey) {
       handleThemeHotkeyKeyUp(evt.key);
+    }
+
+    if (isEscKey) {
+      emulateKeyPress(elCalculatorKeyboard.querySelector('.key--reset'));
     }
   });
 }
