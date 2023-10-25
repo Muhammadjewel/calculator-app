@@ -4,7 +4,6 @@ const CALCULATOR = {
   secondNumber: null,
   operator: null,
   result: null,
-  isReadyForCalc: false,
   isSoundOn: true,
   themes: {
     '1': 'dark',
@@ -90,7 +89,11 @@ function init () {
       CALCULATOR.result = firstNumber / secondNumber;
     }
 
-    console.log(`${firstNumber} ${operator} ${secondNumber} = ${CALCULATOR.result}`);
+    const { result } = CALCULATOR;
+    CALCULATOR.firstNumber = result;
+    CALCULATOR.secondNumber = null;
+    CALCULATOR.currentValue = result;
+    elCalculatorInput.value = formatNumber(result);
   }
 
   function handleNumberKeyClick (elKey) {
@@ -122,52 +125,24 @@ function init () {
   function handleOperatorKeyClick (elKey) {
     const isInputEmpty = !elCalculatorInput.value;
 
-    // no current value => ignore / return
     if (isInputEmpty) {
-      console.log('empty');
       return;
     }
 
-
-    if (CALCULATOR.isReadyForCalc) {
+    if (CALCULATOR.firstNumber && CALCULATOR.currentValue) {
       CALCULATOR.secondNumber = parseFloat(CALCULATOR.currentValue, 10);
-
       calculate();
-
-      const { result } = CALCULATOR;
-
-      CALCULATOR.firstNumber = result;
-      CALCULATOR.secondNumber = null;
-      CALCULATOR.currentValue = result;
-      elCalculatorInput.value = formatNumber(result);
     }
-
 
     if (CALCULATOR.firstNumber) {
       CALCULATOR.operator = elKey.textContent;
       CALCULATOR.currentValue = '';
-      console.log(`${CALCULATOR.firstNumber} ${CALCULATOR.operator}`);
       return;
     }
 
-
-    // operator click AND firstNumber AND operator exists AND input is valid
-      // set secondNumber
-      // make calculations
-      // set firstNumber and currentValue to result
-      // update operator
-      // reset second number
-
-
-    // value
-      // set firstNumber and operator
-      // reset currentValue
     CALCULATOR.firstNumber = parseFloat(CALCULATOR.currentValue, 10);
     CALCULATOR.operator = elKey.textContent;
-    CALCULATOR.isReadyForCalc = true;
     CALCULATOR.currentValue = '';
-
-    console.log(CALCULATOR.firstNumber, CALCULATOR.operator);
   }
 
   function deleteCharacter () {
