@@ -1,3 +1,4 @@
+const TRANSITION_DURATION = 300;
 const CALCULATOR = {
   currentValue: '',
   firstNumber: null,
@@ -104,6 +105,16 @@ function init () {
     CALCULATOR.secondNumber = null;
     CALCULATOR.currentValue = result;
     elCalculatorInput.value = formatNumber(result);
+  }
+
+  function emulateKeyPress (el) {
+    el.click();
+    el.focus();
+    el.classList.add('key--active');
+
+    setTimeout(() => {
+      el.classList.remove('key--active');
+    }, TRANSITION_DURATION);
   }
 
   function handleNumberKeyClick (elKey) {
