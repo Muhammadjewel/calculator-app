@@ -14,6 +14,12 @@ const CALCULATOR = {
 
 
 function init () {
+  function playAudio (el) {
+    el.currentTime = 0;
+    el.play();
+  }
+
+
   // **THEME SWITCHER
   const elRoot = document.documentElement;
   const elThemeSwitcherControlWrapper = document.querySelector('.theme-switcher__control-wrapper');
@@ -45,11 +51,6 @@ function init () {
     document.querySelector(`.theme-switcher__radio[value='${elCurrentTheme}']`).setAttribute('checked', true);
   }
 
-  function playAudio (el) {
-    el.currentTime = 0;
-    el.play();
-  }
-
   function handleThemeHotkeyKeyUp (themeIndex) {
     resetThemeInputs();
     updateThemeInput(CALCULATOR.themes[themeIndex]);
@@ -66,10 +67,19 @@ function init () {
   updateThemeInput();
 
 
-  // HANDLING NUMBER KEYS
+  // **HANDLING NUMBER KEYS
   const elCalculatorInput = document.querySelector('.calculator__input');
   const elCalculatorKeyboard = document.querySelector('.calculator__keyboard');
   const elKeyAudio = document.querySelector('#key-audio');
+
+  function reset () {
+    CALCULATOR.currentValue = '';
+    CALCULATOR.firstNumber = null;
+    CALCULATOR.secondNumber = null;
+    CALCULATOR.operator = null;
+    CALCULATOR.result = null;
+    elCalculatorInput.value = '';
+  }
 
   function formatNumber (numberString) {
     // TODO number is X. => show in a plain format
@@ -162,14 +172,6 @@ function init () {
 
     CALCULATOR.currentValue = CALCULATOR.currentValue.slice(0, -1);
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
-  }
-
-  function reset () {
-    CALCULATOR.currentValue = '';
-    CALCULATOR.firstNumber = null;
-    CALCULATOR.secondNumber = null;
-    CALCULATOR.operator = null;
-    elCalculatorInput.value = '';
   }
 
   function handleCalculatorKeyboardClick (evt) {
