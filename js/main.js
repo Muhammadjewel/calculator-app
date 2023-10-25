@@ -174,6 +174,15 @@ function init () {
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
   }
 
+  function handleEqualKeyClick () {
+    if (CALCULATOR.firstNumber && CALCULATOR.currentValue) {
+      CALCULATOR.secondNumber = parseFloat(CALCULATOR.currentValue, 10);
+      calculate();
+    }
+
+    CALCULATOR.operator = null;
+  }
+
   function handleCalculatorKeyboardClick (evt) {
     const elKey = evt.target;
 
@@ -187,6 +196,10 @@ function init () {
 
     if (elKey.classList.contains('key--operator')) {
       handleOperatorKeyClick(elKey);
+    }
+
+    if (elKey.classList.contains('key--equal')) {
+      handleEqualKeyClick(elKey);
     }
 
     if (elKey.classList.contains('key--del')) {
