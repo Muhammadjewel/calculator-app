@@ -12,11 +12,18 @@ const CALCULATOR = {
     '3': 'vintage'
   },
   numberKeyCodes: ['Numpad0', 'NumpadDecimal', 'Numpad1', 'Numpad2', 'Numpad3', 'Numpad4', 'Numpad5', 'Numpad6', 'Numpad7', 'Numpad8', 'Numpad9', 'Digit0', 'Period', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9'],
-  keyCodeReplaceMap: {
-    'Period': '.',
-    'Decimal': '.',
+  operatorKeyCodes: ['NumpadDivide', 'NumpadMultiply', 'NumpadSubtract', 'NumpadAdd', 'Slash', 'Minus', 'Digit8', 'ShiftRight', 'Equal', 'ShiftRight'],
+  equalOrEnterKeyCodes: ['Enter', 'NumpadEnter', 'Equal'],
+  numberKeyCodeReplaceMap: {
+    'Period|Decimal': '.',
+    'Numpad|Digit': '',
+  },
+  operatorKeyCodeReplaceMap: {
     'Numpad': '',
-    'Digit': ''
+    'Subtract|Minus': '-',
+    'Add|Equal': '+',
+    'Multiply|Digit8': '*',
+    'Divide|Slash': '/',
   }
 }
 
@@ -249,6 +256,11 @@ function init () {
     const isThemeHotkey = evt.altKey && (Object.keys(CALCULATOR.themes).includes(evt.key));
     const isEscKey = evt.code === 'Escape';
     const isNumberKey = CALCULATOR.numberKeyCodes.includes(evt.code) && !evt.shiftKey;
+    const isOperatorKey =
+      (evt.shiftKey && evt.code === 'Equal') ||
+      (evt.shiftKey && evt.code === 'Digit8') ||
+      CALCULATOR.operatorKeyCodes.includes(evt.code);
+    const isEqualOrEnter = CALCULATOR.equalOrEnterKeyCodes.includes(evt.code);
 
     if (isThemeHotkey) {
       handleThemeHotkeyKeyUp(evt.key);
@@ -259,8 +271,17 @@ function init () {
     }
 
     if (isNumberKey) {
-      let key = replaceMultiple(evt.code, CALCULATOR.keyCodeReplaceMap);
+      let key = replaceMultiple(evt.code, CALCULATOR.numberKeyCodeReplaceMap);
       emulateKeyPress(elCalculatorKeyboard.querySelector(`[data-key="${key}"]`));;
+    }
+
+    if (isOperatorKey && evt.code !== 'ShiftRight') {
+      let key = replaceMultiple(evt.code, CALCULATOR.operatorKeyCodeReplaceMap);
+      emulateKeyPress(elCalculatorKeyboard.querySelector(`[data-key="${key}"]`));
+    }
+
+    if (isEqualOrEnter) {
+      emulateKeyPress(elCalculatorKeyboard.querySelector(`[data-key="="]`));
     }
   });
 }
