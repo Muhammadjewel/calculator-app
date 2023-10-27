@@ -15,7 +15,7 @@ const CALCULATOR = {
   keyCodeReplaceMap: {
     'Period': '.',
     'Decimal': '.',
-    'Number': '',
+    'Numpad': '',
     'Digit': ''
   }
 }
@@ -260,7 +260,7 @@ function init () {
 
     if (isNumberKey) {
       let key = replaceMultiple(evt.code, CALCULATOR.keyCodeReplaceMap);
-      console.log(evt.code, key);
+      emulateKeyPress(elCalculatorKeyboard.querySelector(`[data-key="${key}"]`));;
     }
   });
 }
