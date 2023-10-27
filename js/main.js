@@ -135,6 +135,7 @@ function init () {
 
     setTimeout(() => {
       el.classList.remove('key--active');
+      el.blur();
     }, TRANSITION_DURATION);
   }
 
@@ -149,19 +150,23 @@ function init () {
     if (isKeyDecimalAndCurrentValueEmpty) {
       CALCULATOR.currentValue += '0.';
       elCalculatorInput.value = CALCULATOR.currentValue;
+      elKey.blur();
       return;
     }
 
     if (isKeyDecimalAndHasCurrentValueDecimal) {
+      elKey.blur();
       return;
     }
 
     if (hasThreeDecimals) {
+      elKey.blur();
       return;
     }
 
     CALCULATOR.currentValue += elKey.dataset.key;
     elCalculatorInput.value = formatNumber(CALCULATOR.currentValue);
+    elKey.blur();
   }
 
   function handleOperatorKeyClick (elKey) {
