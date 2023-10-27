@@ -248,7 +248,7 @@ function init () {
     // THEME CHANGING VIA HOTKEYS
     const isThemeHotkey = evt.altKey && (Object.keys(CALCULATOR.themes).includes(evt.key));
     const isEscKey = evt.code === 'Escape';
-    const isNumberKey = CALCULATOR.numberKeyCodes.includes(evt.code);
+    const isNumberKey = CALCULATOR.numberKeyCodes.includes(evt.code) && !evt.shiftKey;
 
     if (isThemeHotkey) {
       handleThemeHotkeyKeyUp(evt.key);
