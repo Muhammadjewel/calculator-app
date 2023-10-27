@@ -182,6 +182,7 @@ function init () {
 
   function deleteCharacter () {
     // TODO: fix number display when number has decimals and it has 0 in it
+    // TODO: after calculation is made, currentValue becomes ''. Then Del click is throwing an error
     const isCurrentValueEmpty = CALCULATOR.currentValue === '';
     const hasCurrentValueOneCharacter = CALCULATOR.currentValue.length === 1;
 
